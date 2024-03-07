@@ -23,7 +23,8 @@ Complexity Analysis:
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <cstring> 
+#include <cstring>
+#include <iomanip>
 
 
 using namespace std;
@@ -127,34 +128,38 @@ void process_word(char A[]){
 }
 
 //recursive inorder traversal
-void Inorder(node *p,int i) {
+void Inorder(node *p,FILE *o, int i) {
     if (p){
-        Inorder(p->leftChild,i+1); // recursive call
+        Inorder(p->leftChild,o,i+1); // recursive call
         cout << p->data <<" " << p->count << " (" << i <<")"<< endl; // output to screen
-        // fprintf(f, "%.0f %.0f %.0f \n", p->data, p->data, p->data); // write to file
-        Inorder(p->rightChild,i+1); // recursive call
+        fprintf(o, "%-10s %d (%d) \n", p->data, p->count, i); // write to file
+        Inorder(p->rightChild,o,i+1); // recursive call
     }
 }
 
 int main(int argc, char *argv[]){
 
-    if (argc != 2) {
+    if (argc != 3) {
         cout << "Error" << endl;
-        cout << "Usage: " << argv[0] << " <input_file>" << endl;
+        cout << "Usage: " << argv[0] << " <input_file>" << " <output_file>" << endl;
         return 1;
     }
 
-    char *input_txt;
+    char *input_txt, *output_txt;
     char path[100], word[100];
     char *textfile_paths[100]; // array to s
     int i=0;
 
     input_txt = argv[1];
+    output_txt = argv[2];
 
     FILE* inputFile= fopen(input_txt,"r"); //open input file with read permission
+    FILE* outputFile= fopen(output_txt,"w"); //open output file for writing
+
+    fprintf(outputFile, "%s\n", "pahumuza");
 
      if (!inputFile) {
-        cout << "Please make sure the file exists." << endl;
+        cout << "Please make sure the input file exists." << endl;
         return 1;
     }
 
@@ -175,6 +180,7 @@ int main(int argc, char *argv[]){
         }
 
         cout << textfile_paths[n] << endl;
+        fprintf(outputFile, "%s \n", textfile_paths[n]);
 
         while(fscanf(inputFile, "%s", &word) != EOF)
         {
@@ -186,7 +192,8 @@ int main(int argc, char *argv[]){
 
         fclose(inputFile);
 
-        Inorder(root,0);
+        Inorder(root,outputFile,0);
+        fprintf(outputFile, "%s \n", "--------------------");
         root = nullptr;
 
     }
