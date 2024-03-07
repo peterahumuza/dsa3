@@ -1,6 +1,7 @@
 /*
 Author: Peter Ahumuza
 AndrewID: pahumuza
+Date: 7th March 2024
 
 Usage: <executable> <input_file> <output_file>
 
