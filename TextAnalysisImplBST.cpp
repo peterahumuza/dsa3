@@ -2,22 +2,42 @@
 Author: Peter Ahumuza
 AndrewID: pahumuza
 
-Functionality: 
+Usage: <executable> <input_file> <output_file>
 
+Functionality: 
+    This program reads words from multiple input text files, converts them to lowercase, t
+    and inserts them into a binary search tree. 
+    It then calculates the maximum and average number of probes required to insert the words into the tree 
+    and outputs the results to an output file.
 
 Format of Input: 
+    Each input file contains a list of words separated by whitespace characters. 
+    The program accepts multiple input files as command-line arguments.
 
 Format of Output: 
-
+    The output file contains the path of each input file processed, 
+    followed by the maximum and average number of probes required for each file. 
+    It also includes an inorder traversal of the binary search tree, 
+    showing each word along with its count and depth in the tree.
 
 Solution Strategy: 
+    The program uses a binary search tree to efficiently store and retrieve words. 
+    It processes each input file separately, inserting words into the tree and calculating the maximum 
+    and average number of probes. 
+    It then performs an inorder traversal of the tree to output the word counts and depths.
 
-
-Testing: The code was tested with various test cases including:
-
+Testing: 
+    The code was tested with various test cases, including empty input files, 
+    input files with single and multiple words, 
+    and input files with words containing special characters and uppercase letters.
 
 Complexity Analysis: 
-
+    The time complexity of the program is O(N*log(N)), 
+    where N is the total number of words across all input files. 
+    This is because each word insertion operation in the binary search tree takes O(log(N)) time, 
+    and there are N words to be inserted. The space complexity is O(N), 
+    where N is the total number of unique words across all input files, 
+    as each word is stored once in the binary search tree.
 */
 
 #include <iostream>
