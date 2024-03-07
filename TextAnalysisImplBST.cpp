@@ -56,12 +56,22 @@ struct node
     struct node *leftChild; // left child
 };
 
-void convert_to_lower_case(char A[]){
+/**
+ * convert word to lower case and terminate when you get to the ' character
+ */
 
-       for(int i=0; A[i]!='\0'; i++){
+void process_word(char A[]){
+    int del = 0;
+
+    for(int i=0; A[i]!='\0'; i++){
 
         if(A[i] >= 'A' && A[i] <= 'Z'){
             A[i] += 32;
+        }
+        
+        if( A[i] == '\''){
+            A[i] = '\0';
+            return;
         }
     }
 }
@@ -108,7 +118,7 @@ int main(int argc, char *argv[]){
 
         while(fscanf(inputFile, "%s", &word) != EOF)
         {
-            convert_to_lower_case(word);
+            process_word(word);
             cout << word << endl;
         }
 
