@@ -207,7 +207,7 @@ int main(int argc, char *argv[]){
 
         int maxDepth = maxTreeDepth(root);
         fprintf(outputFile, "Maximum number of probes: %d \n", maxDepth);
-        fprintf(outputFile, "Average number of probes: %.0f \n", static_cast<float>(maxDepth+1)/2 );
+        fprintf(outputFile, "Average number of probes: %.1f \n", static_cast<float>(maxDepth+1)/2 );
 
         Inorder(root,outputFile,0);//inorder traversel
         fprintf(outputFile, "%s \n", "--------------------");
