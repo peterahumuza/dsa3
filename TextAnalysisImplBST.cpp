@@ -25,7 +25,7 @@ Complexity Analysis:
 #include <string>
 #include <cstring>
 #include <iomanip>
-
+#include <algorithm>
 
 using namespace std;
 
@@ -106,6 +106,19 @@ void insertNode(char A[])
     }
 }
 
+int maxTreeDepth(node* root) {
+    if (root == nullptr) {
+        return 0;
+    } else {
+        // Calculate the depth of the left and right 
+        int leftDepth = maxTreeDepth(root->leftChild);
+        int rightDepth = maxTreeDepth(root->rightChild);
+
+        // Return the maximum depth
+        return max(leftDepth, rightDepth) + 1;
+    }
+}
+
 
 /**
  * convert word to lower case and terminate when you get to the ' character
@@ -156,7 +169,7 @@ int main(int argc, char *argv[]){
     FILE* inputFile= fopen(input_txt,"r"); //open input file with read permission
     FILE* outputFile= fopen(output_txt,"w"); //open output file for writing
 
-    fprintf(outputFile, "%s\n", "pahumuza");
+    fprintf(outputFile, "%s\n", andrewID);
 
      if (!inputFile) {
         cout << "Please make sure the input file exists." << endl;
@@ -192,9 +205,13 @@ int main(int argc, char *argv[]){
 
         fclose(inputFile);
 
-        Inorder(root,outputFile,0);
+        int maxDepth = maxTreeDepth(root);
+        fprintf(outputFile, "Maximum number of probes: %d \n", maxDepth);
+        fprintf(outputFile, "Average number of probes: %.0f \n", static_cast<float>(maxDepth+1)/2 );
+
+        Inorder(root,outputFile,0);//inorder traversel
         fprintf(outputFile, "%s \n", "--------------------");
-        root = nullptr;
+        root = nullptr; //reset root
 
     }
 
