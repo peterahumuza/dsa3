@@ -163,7 +163,7 @@ void process_word(char A[])
             A[i] += 32;
         }
 
-        if (A[i] == '\'' || !(A[i] >= 'a' && A[i] <= 'z'))
+        if (A[i] == '\'' || (!(A[i] >= 'a' && A[i] <= 'z') && A[i] != '-' ))
         {
             for (int j = i; A[j] != '\0'; j++)
             {
