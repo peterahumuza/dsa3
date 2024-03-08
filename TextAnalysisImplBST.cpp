@@ -28,9 +28,15 @@ Solution Strategy:
     It then performs an inorder traversal of the tree to output the word counts and depths.
 
 Testing: 
-    The code was tested with various test cases, including empty input files, 
-    input files with single and multiple words, 
-    and input files with words containing special characters and uppercase letters.
+    The code was tested with various test cases:
+    1. Empty Input File
+    2. Single Word Input File
+    3. Multiple Words Input File
+    4. Input File with Uppercase Letters
+    5. Input File with Special Characters
+    6. Input File with Apostrophes
+    7. Multiple Input Files
+    8. Large Input File
 
 Complexity Analysis: 
     The time complexity of the program is O(N*log(N)), 
@@ -154,7 +160,7 @@ void process_word(char A[]){
             A[i] += 32;
         }
         
-        if( A[i] == '\''){
+        if( A[i] == '\'' || !(A[i] >= 'a' && A[i] <='z') ){
             A[i] = '\0';
             return;
         }
@@ -220,7 +226,7 @@ int main(int argc, char *argv[]){
         {
             process_word(word);
             
-            insertNode(word);
+             insertNode(word);
             // cout << word << endl;
         }
 
